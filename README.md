@@ -27,30 +27,48 @@ python -m venv env
 pip3 install -r requirements.txt
 . env/bin/activate
 ```
+- **O teste apenas verifica se o Myhdl está correto, ele não testa o módulo! passar no teste não indica que está certo!!**
 
-### Questão 1
+### Questão 1 (nova)
 
 | Módulo             | pnts   |
 | ------------------ | ------ |
-| Resolução no papel | 4 (HW) |
-| `exe1(a,b,c,q)`    | 2 (HW) |
+| `exe1(a,b,c,s)`    | 2 (HW) |
 
-- **O teste apenas verifica se o Myhdl está correto, ele não testa o módulo! passar no teste não indica que está certo!!**
+Implemente o circuito a seguir em MyHDL
 
-Em 1938, o matemático americano Claude Shannon notou o paralelismo entre a lógica proposicional e a lógica dos circuitos e percebeu que a álgebra booleana teria um papel importante na sistematização deste ramo da eletrônica. Cada um dos conetivos básicos da lógica são instâncias das operações básicas da álgebra booleana (“+”, “.” e ” ’ ”). Expressões booleanas combinando operações e variáveis podem ser usadas para representar circuitos combinacionais formados por portas lógicas.
-GERSTING, J. L. Mathematical Structures for Computer Science.
-New York: W. H. Freeman and Company, 2002.
 
-A partir das informações apresentadas, considere o circuito combinacional da figura a seguir.
+![](assets/logica1.png)
 
-![](assets/exe1.jpg)
-
-Descreva a equação do circuito anterior em MyHDL, saiba que:
+Saiba que:
 
 ```python
-- x1,x2,x3 : Entradas do tipo bool()
-- z: Saída do tipo bool()
+- a,b,c : Entradas do tipo bool()
+- s: Saída do tipo bool()
 ```
+
+## Questão 2 (nova)
+
+|                         Módulo                                                  | pnts   |
+| ------------------------------------------------------------------------------- | ------ |
+| `exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)`    | 2 (HW) |
+
+Você deve desenvolver um circuito em MyHDL que resolve o problema a seguir.
+
+Você é encarregado de desenvolver um sistema de detecção de nível de líquido inflamável em um tanque de uma industria química. O tanque possui três sensores de nível: Baixo (L), Médio (M) e Alto (H). Cada sensor produz um sinal lógico ALTO quando o nível do líquido atinge sua posição.
+
+Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base nas seguintes condições:
+
+1. Se o sensor de nível Baixo (L) estiver ativo e os outros dois sensores estiverem inativos, um `LED verde` deve acender, indicando que o tanque está no nível baixo.
+2. Se os sensores de nível Baixo (L) e Médio (M) estiverem ativos, e o sensor Alto (H) estiver inativo, um `LED amarelo` deve acender, indicando que o tanque está no nível médio.
+3. Se todos os três sensores estiverem ativos, um `LED vermelho` deve acender, indicando que o tanque está cheio.
+4. Se nenhum sensor estiver ativo, `um LED azul` deve acender, indicando que o tanque está vazio.
+5. Se sensor Alto (H) estiver ativo e pelo menos um dos outros dois sensores estiver inativo ou se o sensor Médio (M) estiver ativo e o sensor Baixo (L) inativo, um `LED laranja` deve acender, indicando que existe alguma falha nos sensores.
+
+
+
+![](assets/nivel.png)
+
 
 ## Questão 2
 

@@ -4,23 +4,48 @@
 from myhdl import *
 from .componentes import *
 
-vec_exe1 = ["1101", "1111", "1001", "1101", "0000", "0010", "1010"]
+vec_exe1 = ["0000", "0010", "0100", "0110", "1001", "1011", "1100", "1111"]
 
 
 def test_exe1():
     @instance
     def stimulus():
         for t in vec_exe1:
-            x1.next = int(t[0])
-            x2.next = int(t[1])
-            x3.next = int(t[2])
+            a.next = int(t[0])
+            b.next = int(t[1])
+            c.next = int(t[2])
             yield delay(1)
-            assert z == int(t[3])
+            assert s == int(t[3])
 
-    x1, x2, x3, z = [Signal(bool(0)) for i in range(4)]
-    dut = exe1(x1, x2, x3, z)
+    a, b, c, s = [Signal(bool(0)) for i in range(4)]
+    dut = exe1(a, b, c, s)
     sim = Simulation(dut, stimulus)
     sim.run()
+
+
+
+vec_exe2 = ["00000010", "00100001", "01000001", "01100001", "10010000", "10100001", "11001000", "11100100"]
+
+def test_exe2():
+    @instance
+    def stimulus():
+        for t in vec_exe1:
+            L.next = int(t[0])
+            M.next = int(t[1])
+            H.next = int(t[2])
+            yield delay(1)
+            assert LED_verde == int(t[3])
+            assert LED_amarelo == int(t[4])
+            assert LED_vermelho == int(t[5])
+            assert LED_azul == int(t[6])
+            assert LED_laranja == int(t[7])
+
+    a, b, c, s = [Signal(bool(0)) for i in range(4)]
+    dut = exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)
+    sim = Simulation(dut, stimulus)
+    sim.run()
+
+
 
 
 vec_exe3 = ["0000", "0011", "0101", "0110", "1001", "1010", "1100", "1111"]
