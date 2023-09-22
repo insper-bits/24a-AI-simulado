@@ -2,11 +2,28 @@
 # -*- coding: utf-8 -*-
 
 from myhdl import *
-from .componentes import *
+from componentes import *
+import pytest
+import os
+
+try:
+    from telemetry import telemetryMark
+
+    pytestmark = telemetryMark()
+except ImportError as err:
+    print("Telemetry não importado")
+
+
+def source(name):
+    dir = os.path.dirname(__file__)
+    src_dir = os.path.join(dir, ".")
+    return os.path.join(src_dir, name)
+
 
 vec_exe1 = ["0000", "0010", "0100", "0110", "1001", "1011", "1100", "1111"]
 
 
+@pytest.mark.telemetry_files(source("components.py"))
 def test_exe1():
     @instance
     def stimulus():
@@ -23,9 +40,19 @@ def test_exe1():
     sim.run()
 
 
+vec_exe2 = [
+    "00000010",
+    "00100001",
+    "01000001",
+    "01100001",
+    "10010000",
+    "10100001",
+    "11001000",
+    "11100100",
+]
 
-vec_exe2 = ["00000010", "00100001", "01000001", "01100001", "10010000", "10100001", "11001000", "11100100"]
 
+@pytest.mark.telemetry_files(source("components.py"))
 def test_exe2():
     @instance
     def stimulus():
@@ -46,11 +73,10 @@ def test_exe2():
     sim.run()
 
 
-
-
 vec_exe3 = ["0000", "0011", "0101", "0110", "1001", "1010", "1100", "1111"]
 
 
+@pytest.mark.telemetry_files(source("components.py"))
 def test_exe3():
     @instance
     def stimulus():
@@ -68,6 +94,7 @@ def test_exe3():
     sim.run()
 
 
+@pytest.mark.telemetry_files(source("components.py"))
 def test_add3():
     @instance
     def stimulus():
@@ -87,6 +114,7 @@ def test_add3():
     sim.run()
 
 
+@pytest.mark.telemetry_files(source("components.py"))
 def test_exe4():
     @instance
     def stimulus():

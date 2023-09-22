@@ -4,36 +4,27 @@
 
 """
 
-
 from myhdl import *
-from .exe2_extra import *
 
 
 def exe1(a, b, c, s):
     @always_comb
     def comb():
-        s.next = (a and b and c) or (a and not b and not(not a and not c))
+        s.next = (a and b and c) or (a and not b and not (not a and not c))
 
     return instances()
 
 
-
 def exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja):
-    LED_verde.next = 0
-    LED_amarelo.next = 0
-    LED_vermelho.next = 0
-    LED_azul.next = 0
-    LED_laranja.next = 0
-
     @always_comb
     def comb():
-        if M and not L:   # falha sensor
+        if M and not L:  # falha sensor
             LED_laranja.next = 1
-        elif H and (not L or not M): # falha sensor
+        elif H and (not L or not M):  # falha sensor
             LED_laranja.next = 1
         elif L and not M and not H:  # nivel verde
             LED_verde.next = 1
-        elif L and M and not H: # nivel amarelo
+        elif L and M and not H:  # nivel amarelo
             LED_amarelo.next = 1
         elif L and M and H:  # nivel vermelho
             LED_vermelho.next = 1
@@ -41,14 +32,6 @@ def exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja):
             LED_azul.next = 1
 
     return instances()
-
-
-
-
-
-
-
-
 
 
 def exe3(x3, x2, x1, p):
@@ -60,7 +43,6 @@ def exe3(x3, x2, x1, p):
 
 
 def exe4(b, p):
-
     # tip:
     # vc vai precisar usar essas variáveis auxiliares
     # que sao as saidas dos add3

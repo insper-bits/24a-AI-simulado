@@ -1,9 +1,2 @@
 myhdl
 pytest
-pyyaml
-tabulate
-click
-pytest
-requests
-python-slugify
-unicode
