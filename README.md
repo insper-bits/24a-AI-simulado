@@ -14,22 +14,18 @@ como usar o seu tempo.
 
 Você deve:
 
-1. clonar o repositório que foi gerado pelo link (e trabalhar nele)
-1. editar o arquivo `ALUNO.yml`
+1. Usar o codespace na prova
 1. não esqueça de dar `commit` e `push` a cada questão
 
-> Todas as questões possuem testes, para executar: `pytest -k QUESTAO`
+Lembre de executar uma única vez `telemetry auth` no codespace.
 
-Lembre de gerar um ambiente virtual:
+> Todas as questões possuem testes, para executar: `pytest -s -k QUESTAO`
 
-```bash
-python -m venv env
-pip3 install -r requirements.txt
-. env/bin/activate
-```
-- **O teste apenas verifica se o Myhdl está correto, ele não testa o módulo! passar no teste não indica que está certo!!**
+Você deve realizar as implementações no arquivo: 
 
-### Questão 1 (nova)
+- `coponentes.py`
+
+## Questão 1
 
 | Módulo             | pnts   |
 | ------------------ | ------ |
@@ -37,23 +33,20 @@ pip3 install -r requirements.txt
 
 Implemente o circuito a seguir em MyHDL
 
-
 ![](assets/logica1.png)
 
-Saiba que:
+Considere:
 
 ```python
 - a,b,c : Entradas do tipo bool()
 - s: Saída do tipo bool()
 ```
 
-## Questão 2 (nova)
+## Questão 2
 
-|                         Módulo                                                  | pnts   |
-| ------------------------------------------------------------------------------- | ------ |
-| `exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)`    | 2 (HW) |
-
-Você deve desenvolver um circuito em MyHDL que resolve o problema a seguir.
+| Módulo                                                                       | pnts   |
+|------------------------------------------------------------------------------|--------|
+| `exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)` | 2 (HW) |
 
 Você é encarregado de desenvolver um sistema de detecção de nível de líquido inflamável em um tanque de uma industria química. O tanque possui três sensores de nível: Baixo (L), Médio (M) e Alto (H). Cada sensor produz um sinal lógico ALTO quando o nível do líquido atinge sua posição.
 
@@ -65,62 +58,30 @@ Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base
 4. Se nenhum sensor estiver ativo, `um LED azul` deve acender, indicando que o tanque está vazio.
 5. Se sensor Alto (H) estiver ativo e pelo menos um dos outros dois sensores estiver inativo ou se o sensor Médio (M) estiver ativo e o sensor Baixo (L) inativo, um `LED laranja` deve acender, indicando que existe alguma falha nos sensores.
 
-
-
 ![](assets/nivel.png)
 
+Considere:
 
-## Questão 2
+```python
+- L,M,H : Entradas do tipo bool()
+- LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja: Saídas do tipo bool()
+```
+
+## Questão 3
 
 | Arquivo               | pnts |
 | --------------------- | ---- |
 | (a) Diagrama no papel | 6    |
 | (b) Explicação        | 2    |
 
-Considere o componente `exe2` a seguir:
+Considere o componente a seguir:
 
 ```python
-from myhdl import *
 
-@block
-def exe2(a, b, c, d, e, q):
 
-    aux1, aux2, aux3 = [Signal(bool(0)) for i in range(3)]
-
-    ci1 = comp1(a, b, aux1)
-    ci2 = comp2(c, b, aux2)
-
-    @always_comb
-    def comb():
-        if d:
-            aux3 = aux1
-        else:
-            aux3 = aux2
-
-        q.next = aux3 and e
-
-    return instances()
-
-from myhdl import *
-
-@block
-def comp1(x0, x1, z):
-    @always_comb
-    def comb():
-        z.next = x0 or x1
-
-    return instances()
-
-@block
-def comp2(x0, x1, z):
-    @always_comb
-    def comb():
-        z.next = x0 and (not x1)
-
-    return instances()
 ```
 
-- Considere as entradas e saídas do componentes `exe2` como sendo do tipo `bool()`.
+- Considere as entradas e saídas do componentes como sendo do tipo `bool()`.
 
 ### (a)
 
@@ -177,23 +138,54 @@ Saiba que:
 | (b) Simulação | 4 (HW)  |
 | (c) `exe4` | 6 (HW) |
 
-Vamos implementar o famoso algoritmo de conversão de número binário para BCD, o 'Double dabble'. Para isso será necessário primeiramente criarmos um módulo chamado de `add3`, e então usarmos três deste módulo para criarmos nosso conversor BCD, conforme diagrama a seguir:
+De forma similar ao `half-adder` e `full-adder`, podemos desenvolver dois componentes chamados de `half-subtractor` e `full-subtractor` que realizam a subtração de números binários.
 
-![](assets/doubledabble.png)
+![](assets/sub.png)
+
+O `half-subtractor` é um circuito combinacional que subtrai dois bits (`x`, `y`), gerando dois tipos de saída: a diferença (`D`) e o borrow (`B`). O borrow é a saída que indica se foi necessário "emprestar" um bit do próximo dígito mais significativo para realizar a subtração.
+
+O `full-subtractor`, por sua vez, é uma extensão do `half-subtractor`, sendo utilizado para subtrair três bits de entrada: dois bits que são subtraídos (`x`, `y`) e um bit de borrow da subtração anterior (`z`). Assim como o `half-subtractor`, o `full-subtractor` tem duas saídas: a diferença (`D`) e o borrow (`B`).
+
+Ambos, `half-subtractor` e `full-subtractor`, são usados para a construção de unidades aritméticas em sistemas digitais, possibilitando a realização de operações de subtração em números binários de múltiplos bits (sem a necessidade de realizamor uma sucessão de somas e deslocamentos, que é algo lento).
+
+Considere a tabela verdade dos dois componentes:
+
+- `half-subtractor`
+
+| x | y | B | D |
+|---|---|---|---|
+| 0 | 0 | 0 | 0 |
+| 0 | 1 | 1 | 1 |
+| 1 | 0 | 0 | 1 |
+| 1 | 1 | 0 | 0 |
+
+- `full-subtractor`
+
+| x | y | z | B | D |
+| 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 1 | 1 | 1 |
+| 0 | 1 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 1 | 0 |
+| 1 | 0 | 0 | 0 | 1 |
+| 1 | 0 | 1 | 0 | 0 |
+| 1 | 1 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 1 |
+
+### Circuito 
+
+No papel desenhe um diagrama que usando os dois componentes implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
 
 ### `add3`
 
-- Testar com: `pytest -k add3 -s`
-
-O módulo `add3` faz o seguinte: Ele soma +3 a entrada, se o valor for maior que 4, caso contrário apenas copia o valor para saída:
-
-![](assets/add3.png)
 
 ### `Simulando`
 
+<!-- 
 > No papel
 
 Vamos simular se a proposta de hardware converte corretamente um número binário para BCD? Para isso iremos simular uma entrada em binário do número **45** e devemos obter o BCD correto relativo a este valor.
+
+-->
 
 ### Double dabble
 
