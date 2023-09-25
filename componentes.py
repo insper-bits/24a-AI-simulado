@@ -50,7 +50,8 @@ def exe4_half_sub(x, y, b, d):
     def comb():
         d.next = ((not x) and y) or (x and (not y))
         b.next = (not x) and y
-
+    return instances()
+    
 def exe4_full_sub(x, y, z, b, d):
     @always_comb
     def comb():
@@ -61,11 +62,13 @@ def exe4_full_sub(x, y, z, b, d):
             or (x and y and z)
         )
         b.next = ((not x) and y) or ((not x) and z) or (y and z)
-
+    return instances()
 
 def exe4_sub3(v2, v1, v0, p2, p1, p0, q2, q1, q0):
-    @always_comb
-    def comb():
-        pass
+    b3, b2, b1 = [Signal(bool(0)) for i in range(3)]
+
+    c0 = exe4_half_sub(v0, p0, b1, q0)
+    c1 = exe4_full_sub(v1, p1, b1, b2, q1)
+    c2 = exe4_full_sub(v2, p2, b2, b3, q2)
 
     return instances()
