@@ -23,7 +23,7 @@ def source(name):
 vec_exe1 = ["0000", "0010", "0100", "0110", "1001", "1011", "1100", "1111"]
 
 
-@pytest.mark.telemetry_files(source("components.py"))
+@pytest.mark.telemetry_files(source("componentes.py"))
 def test_exe1():
     @instance
     def stimulus():
@@ -52,7 +52,7 @@ vec_exe2 = [
 ]
 
 
-@pytest.mark.telemetry_files(source("components.py"))
+@pytest.mark.telemetry_files(source("componentes.py"))
 def test_exe2():
     @instance
     def stimulus():
@@ -73,63 +73,51 @@ def test_exe2():
     sim.run()
 
 
-vec_exe3 = ["0000", "0011", "0101", "0110", "1001", "1010", "1100", "1111"]
+vec_exe3 = ["0001001", "0011011", "0101101", "1110111"]
 
-
-@pytest.mark.telemetry_files(source("components.py"))
+@pytest.mark.telemetry_files(source("componentes.py"))
 def test_exe3():
     @instance
     def stimulus():
-        for t in vec_exe3:
-            x3.next = int(t[0])
-            x2.next = int(t[1])
-            x1.next = int(t[2])
+        t = "0000"
+        i3.next = int(t[3])
+        i2.next = int(t[2])
+        i1.next = int(t[1])
+        i0.next = int(t[0])
+        yield delay(1)
+        assert v == 0
+
+        for test in vec_exe3:
+            print(test)
+            i3.next = int(test[0])
+            i2.next = int(test[1])
+            i1.next = int(test[2])
+            i0.next = int(test[3])
 
             yield delay(1)
-            assert p == int(t[3])
+            assert int(p1) == int(test[4])
+            assert int(p0) == int(test[5])
+            assert int(v) == int(test[6])
 
-    x3, x2, x1, p = [Signal(bool(0)) for i in range(4)]
-    dut = exe3(x3, x2, x1, p)
+    i3, i2, i1, i0, p1, p0, v = [Signal(bool(0)) for i in range(7)]
+    dut = exe3(i3, i2, i1, i0, p1, p0, v)
     sim = Simulation(dut, stimulus)
     sim.run()
 
+vec_exe4_half = ["0000", "0111", "1001", "1100"]
 
-@pytest.mark.telemetry_files(source("components.py"))
-def test_add3():
+@pytest.mark.telemetry_files(source("componentes.py"))
+def test_exe4_half():
     @instance
     def stimulus():
-        for i in range(8):
-            a.next = i
+        for test in vec_exe4_half:
+            x.next = int(test[0])
+            y.next = int(test[1])
             yield delay(1)
-            if a <= 4:
-                assert b == i
-            else:
-                assert b == i + 3
+            assert int(b) == int(test[2])
+            assert int(d) == int(test[3])
 
-    a = Signal(modbv(0)[4:])
-    b = Signal(modbv(0)[4:])
-
-    dut = add3(a, b)
-    sim = Simulation(dut, stimulus)
-    sim.run()
-
-
-@pytest.mark.telemetry_files(source("components.py"))
-def test_exe4():
-    @instance
-    def stimulus():
-        for i in range(64):
-            b.next = i
-            yield delay(1)
-            bcd = "0" + str(int(b))
-            high = bcd[-2]
-            low = bcd[-1]
-            assert int(p(8, 4)) == int(high)
-            assert int(p(4, 0)) == int(low)
-
-    b = Signal(modbv(0)[6:])
-    p = Signal(modbv(0)[8:])
-
-    dut = exe4(b, p)
+    x,y,b,d= [Signal(bool(0)) for i in range(4)]
+    dut = exe4_half_sub(x,y,b,d)
     sim = Simulation(dut, stimulus)
     sim.run()

@@ -1,12 +1,11 @@
 # AV2 - bits e proc
 
-1. Prática (github)
+Você possui um total de 1h20 para realizar a avaliação, você pode decidir como usar o seu tempo.
 
-Você possui um total de 1h20 para realizar a avaliação, você pode decidir
-como usar o seu tempo.
-
-- **NÃO PODE USAR O GITHUB COPILOT**
+- **Consultar apenas site da disciplinas, códigos de labs e projetos**
+- **NÃO PODE USAR O GITHUB COPILOT ou ChatGPT**
 - **Trabalhar sozinho**
+- **Deixar proctorio aberto**
 - **1h20 min**
 - **REALIZAR UM COMMIT (A CADA QUESTÃO) E DAR PUSH AO FINALIZAR**
 
@@ -29,7 +28,7 @@ Você deve realizar as implementações no arquivo:
 
 | Módulo             | pnts   |
 | ------------------ | ------ |
-| `exe1(a,b,c,s)`    | 2 (HW) |
+| `exe1(a,b,c,s)`    | 4 (HW) |
 
 Implemente o circuito a seguir em MyHDL
 
@@ -46,7 +45,7 @@ Considere:
 
 | Módulo                                                                       | pnts   |
 |------------------------------------------------------------------------------|--------|
-| `exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)` | 2 (HW) |
+| `exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)` | 6 (HW) |
 
 Você é encarregado de desenvolver um sistema de detecção de nível de líquido inflamável em um tanque de uma industria química. O tanque possui três sensores de nível: Baixo (L), Médio (M) e Alto (H). Cada sensor produz um sinal lógico ALTO quando o nível do líquido atinge sua posição.
 
@@ -69,75 +68,58 @@ Considere:
 
 ## Questão 3
 
-| Arquivo               | pnts |
-| --------------------- | ---- |
-| (a) Diagrama no papel | 6    |
-| (b) Explicação        | 2    |
+| Arquivo | pnts |
+|---------|------|
+| myhdl   | 6    |
 
-Considere o componente a seguir:
+Um codificador é um circuito que compacta várias entradas binárias em um número menor de saídas. A saída de um codificador de prioridade, que pode ser usado em um sistema embarcado, é a representação binária do índice da linha ativada mais significativa, começando do zero. O codificador de prioridade é usado para controlar pedidos de interrupção.
 
-```python
+As entradas do codificador são quatro linhas de interrupção (I3, I2, I1 e I0 ) e ele possui três saídas: P1 e P0, que formam um número binário de 2 bits que indica o número da entrada ativada que possui maior prioridade, e V que indica se há alguma interrupção.
 
-
+``` 
+           -------
+   I3 --> |       | -> P1
+   I2 --> |       | -> P0
+   I1 --> |       | -> V
+   I0 --> |       |
+           -------
 ```
 
-- Considere as entradas e saídas do componentes como sendo do tipo `bool()`.
+A tabela-verdade a seguir mostra o funcionamento do codificador.
 
-### (a)
+| I3 | I2 | I1 | I0 | P1 | P0 | V |
+|----|----|----|----|----|----|---|
+| 0  | 0  | 0  | 0  | X  | X  | 0 |
+| 0  | 0  | 0  | 0  | 0  | 0  | 1 |
+| 0  | 0  | 1  | X  | 0  | 1  | 1 |
+| 0  | 1  | X  | X  | 1  | 0  | 1 |
+| 1  | X  | X  | X  | 1  | 1  | 1 |
 
-> No papel
+### (myhdl) implementação
 
-No papel faca o diagrama de blocos do componente.
+Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 
-### (b)
+> Módulos:
+>   - `exe3` 
+>
+> Teste:
+>   - `pytest -k exe3_p0`
+>   - `pytest -k exe3_p1`
+>   - `pytest -k exe3_v`
+> 
+> Entradas e Saídas:
+>   - `i3,i2,i1,i0`: Entradas `bool()`
+>   - `p1,p0,v`: Saídas `bool()`
 
-> No papel
+## Questão 4 
 
-Explique em um parágrafo o que o componente faz.
-
-## Questão 3
-
-| Arquivo                | pnts   |
-| ---------------------- | ------ |
-| (a) Resolução no papel | 4 (HW) |
-| (b) `exe3(x, y, z)`    | 2 (HW) |
-
-Você deve desenvolver um componente que calcula a paridade par (`p`) de um vetor de três bits (`x2`, `x1`, `x0`). A paridade de um vetor é um bit a mais que torna a soma de todos os bits do vetor positivo (se fosse paridade ímpar, torna a soma um valor ímpar.):
-
-` SUM(x2, x1, x0, p) = par`
-
-Exemplos:
-
-- `x=100` -> `p=1` (`1+0+0+1 = 2 (par)`)
-- `x=110` -> `p=0` (`1+1+0+0 = 2 (par)`)
-
-O bit de paridade é muito utilizado em protocolos de comunicacão como uma das maneiras de se detectar erro durante o envio de um pacote, junto com o dado enviasse a paridade e se ela não bater quer dizer que algo deu errado. O problema da paridade é que ela não pega erro em 2 bits.
-
-### (a)
-
-> No papel
-
-Encontre a equação que controla o sinal de paridade `p` dado uma entrada de três bits `x`.
-
-### (b)
-
-Implemente em MyHDL a solução para o módulo que calcula paridade.
-
-- Testar com: `pytest -k exe3 -s`
-
-Saiba que:
-
-- `x2`, `x1`, `x0`: São entradas do tipo `bool()`
-- `p`: Saída do tipo `bool()`
-
-## Questão 4
-
-| Arquivo                                       | pnts   |
-|-----------------------------------------------|--------|
-| (a) (papel) Simulação                         | 2 (HW) |
-| (b) (papel) Equação                           | 2 (HW) |
-| (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` | 4 (HW) |
-| (c) (myhdl) `exe4_sub3`                       | 6 (HW) |
+| Arquivo                                       | pnts    |
+|-----------------------------------------------|---------|
+| Total:                                        | 16 (HW) |
+| (a) (papel) Simulação                         | 6 (HW)  |
+| (b) (papel) Equação                           | 2 (HW)  |
+| (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` | 2 (HW)  |
+| (c) (myhdl) `exe4_sub3`                       | 6 (HW)  |
 
 De forma similar ao `half-adder` e `full-adder`, podemos desenvolver dois componentes chamados de `half-subtractor` e `full-subtractor` que realizam a subtração de números binários.
 
@@ -147,7 +129,7 @@ O `half-subtractor` é um circuito combinacional que subtrai dois bits (`x` - `y
 
 O `full-subtractor`, por sua vez, é uma extensão do `half-subtractor`, sendo utilizado para subtrair três bits de entrada: dois bits que são subtraídos (`x`, `y`) e um bit de borrow da subtração anterior (`z`). Assim como o `half-subtractor`, o `full-subtractor` tem duas saídas: a diferença (`D`) e o borrow (`B`).
 
-Ambos, `half-subtractor` e `full-subtractor`, são usados para a construção de unidades aritméticas em sistemas digitais, possibilitando a realização de operações de subtração em números binários de múltiplos bits (sem a necessidade de realizamor uma sucessão de somas e deslocamentos, que é algo lento).
+Ambos, `half-subtractor` e `full-subtractor`, são usados para a construção de unidades aritméticas em sistemas digitais, possibilitando a realização de operações de subtração em números binários de múltiplos bits.
 
 Considere a tabela verdade dos dois componentes:
 
@@ -192,49 +174,35 @@ Para cada fio (`a,b,c,d,e,...`) do diagrama do subtrator `sub3` apresentado ante
 
 ### b) (papel) Equações
 
-Encontre as equações reduzidas usando para os componentes `half-sub` e `full-sub`.
+Encontre as equações reduzidas usando para os componentes `exe4_half_sub` e `exe4_full_sub`.
 
 ### c) (myhdl) `half-sub` e `full-sub`
 
-
 Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir das equações encontradas anteriormente.
 
-
+> Módulos:
+>   - `exe4_half_sub` 
+>   - `exe4_full_sub`
+> 
 > Teste: 
 >   - `pytest -k exe4_half_sub`
 >   - `pytest -k exe4_full_sub`
 >
-> Tipos dos sinais:
+> Entradas e Saídas:
 >   - x,y,z: in do tipo bool(0)
 >   - q,b: out do tipo bool(0)
 
 ### d) (myhdl) `sub3`
 
-Implemente o componente `sub3` usando o `half-sub` e `full-sub`.
+Implemente o componente `exe4_sub3` usando o `exe4_half_sub` e `exe4_full_sub`.
 
-
-```python
-    x,y,z: in do tipo bool(0)
-    q,b: out do tipo bool(0)
-```
-
-
-### `Simulando`
-
-<!-- 
-> No papel
-
-Vamos simular se a proposta de hardware converte corretamente um número binário para BCD? Para isso iremos simular uma entrada em binário do número **45** e devemos obter o BCD correto relativo a este valor.
-
--->
-
-### Double dabble
-
-Implemente o Double dabble em myhdl, usando três componente `add3`.
-
-Note os tipos dos sinais:
-
-```python
-    b = Signal(modbv(0)[6:])
-    p = Signal(modbv(0)[8:])
-```
+> Módulo:
+>   - `exe4_sub3` 
+> 
+> Teste: 
+>   - `pytest -k exe4_sub3`
+>
+> Entradas e Saídas:
+>   - v2,v1,v0: in do tipo bool(0)
+>   - p2,p1,p0: in do tipo bool(0)
+>   - q2,q1,q0: out do tipo bool(0)
