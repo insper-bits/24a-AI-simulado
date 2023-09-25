@@ -132,11 +132,12 @@ Saiba que:
 
 ## Questão 4
 
-| Arquivo    | pnts    |
-| ---------- | ------- |
-| (a) `add3` | 4 (HW)  |
-| (b) Simulação | 4 (HW)  |
-| (c) `exe4` | 6 (HW) |
+| Arquivo                                       | pnts   |
+|-----------------------------------------------|--------|
+| (a) (papel) Simulação                         | 2 (HW) |
+| (b) (papel) Equação                           | 2 (HW) |
+| (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` | 4 (HW) |
+| (c) (myhdl) `exe4_sub3`                       | 6 (HW) |
 
 De forma similar ao `half-adder` e `full-adder`, podemos desenvolver dois componentes chamados de `half-subtractor` e `full-subtractor` que realizam a subtração de números binários.
 
@@ -175,7 +176,7 @@ Considere a tabela verdade dos dois componentes:
 
 Notem que podemos interpretar a tabela como valores em complemento de dois! Por exemplo, vamos considerar a situaćão na qual `x=0`, `y=1` e `z=0`, isso significa que temos: `0-1-0= -1`, `-1` em complemento de dois é `11`! Ou seja `B=1` e `D=1`. Outro caso seria o `x=0, y=1, z=1` nesse caso a o resultado seria: `-2 = 0 -1 -1`, e `-2` em complemento de dois é `10`, ou seja: `B=1` e `D=0`.
 
-A seguir um diagrama que usando `half-sub` e `full-sub` implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
+A seguir um diagrama que usando `half-sub` e `full-sub` implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q: [Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
 
 ![](assets/sub3.png)
 
@@ -185,11 +186,37 @@ A seguir um diagrama que usando `half-sub` e `full-sub` implemente um subtrator 
 No papel desenhe um diagrama que usando `half-sub` e `full-sub` implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
 -->
 
-### a) Simulando
+### a) (papel) Simulando
 
-No circuito desenhado simule a situacão de que a entrada `V = 3`, `P = -4`.  Para cada fio do circuito escreva o valor binário 
+Para cada fio (`a,b,c,d,e,...`) do diagrama do subtrator `sub3` apresentado anteriormente, simule o caso para a situaćão `V=3` e `P=-4`. 
 
-### `add3`
+### b) (papel) Equações
+
+Encontre as equações reduzidas usando para os componentes `half-sub` e `full-sub`.
+
+### c) (myhdl) `half-sub` e `full-sub`
+
+
+Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir das equações encontradas anteriormente.
+
+
+> Teste: 
+>   - `pytest -k exe4_half_sub`
+>   - `pytest -k exe4_full_sub`
+>
+> Tipos dos sinais:
+>   - x,y,z: in do tipo bool(0)
+>   - q,b: out do tipo bool(0)
+
+### d) (myhdl) `sub3`
+
+Implemente o componente `sub3` usando o `half-sub` e `full-sub`.
+
+
+```python
+    x,y,z: in do tipo bool(0)
+    q,b: out do tipo bool(0)
+```
 
 
 ### `Simulando`
