@@ -19,7 +19,6 @@ def source(name):
     src_dir = os.path.join(dir, ".")
     return os.path.join(src_dir, name)
 
-
 vec_exe1 = ["0000", "0010", "0100", "0110", "1001", "1011", "1100", "1111"]
 
 
@@ -39,9 +38,7 @@ def test_exe1():
     sim = Simulation(dut, stimulus)
     sim.run()
 
-
 vec_exe2 = [
-    "00000010",
     "00100001",
     "01000001",
     "01100001",
@@ -49,35 +46,30 @@ vec_exe2 = [
     "10100001",
     "11001000",
     "11100100",
+    "00000010",
 ]
-
 
 @pytest.mark.telemetry_files(source("componentes.py"))
 def test_exe2():
     @instance
     def stimulus():
         for t in vec_exe2:
-            L.next = int(t[0])
-            M.next = int(t[1])
-            H.next = int(t[2])
+            l.next = int(t[0])
+            m.next = int(t[1])
+            h.next = int(t[2])
             yield delay(1)
-            assert int(LED_verde) == int(t[3])
-            assert int(LED_amarelo) == int(t[4])
-            assert int(LED_vermelho) == int(t[5])
-            assert int(LED_azul) == int(t[6])
-            assert int(LED_laranja) == int(t[7])
+            assert l_vd == int(t[3])
+            assert l_am == int(t[4])
+            assert l_vm == int(t[5])
+            assert l_az == int(t[6])
+            assert l_lj == int(t[7])
 
-    L, M, H = [Signal(bool(0)) for i in range(3)]
-    LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja = [
-        Signal(bool(0)) for i in range(5)
-    ]
-    dut = exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)
+    l, m, h, l_vd, l_am, l_vm, l_az, l_lj = [Signal(bool(0)) for i in range(8)]
+    dut = exe2(l, m, h, l_vd, l_am, l_vm, l_az, l_lj)
     sim = Simulation(dut, stimulus)
     sim.run()
 
-
 vec_exe3 = ["0001001", "0011011", "0101101", "1110111"]
-
 
 @pytest.mark.telemetry_files(source("componentes.py"))
 def test_exe3():

@@ -15,21 +15,14 @@ def exe1(a, b, c, s):
     return instances()
 
 
-def exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja):
+def exe2(l, m, h, l_vd, l_am, l_vm, l_az, l_lj):
     @always_comb
     def comb():
-        if M and not L:  # falha sensor
-            LED_laranja.next = 1
-        elif H and (not L or not M):  # falha sensor
-            LED_laranja.next = 1
-        elif L and not M and not H:  # nivel verde
-            LED_verde.next = 1
-        elif L and M and not H:  # nivel amarelo
-            LED_amarelo.next = 1
-        elif L and M and H:  # nivel vermelho
-            LED_vermelho.next = 1
-        elif not L and not M and not H:
-            LED_azul.next = 1
+        l_vd.next = l and not m and not h
+        l_am.next = l and m and not h
+        l_vm.next = l and m and h
+        l_az.next = not l and not m and not h
+        l_lj.next = (h and (not l or not m)) or (m and not l)
 
     return instances()
 
@@ -37,7 +30,7 @@ def exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja):
 def exe3(i3, i2, i1, i0, p1, p0, v):
     @always_comb
     def comb():
-        p1.next = i3 or i2 
+        p1.next = i3 or i2
         p0.next = ((not i3) and (not i2) and i1) or (i3)
         v.next = i3 or i2 or i1 or i0
         pass
@@ -50,8 +43,10 @@ def exe4_half_sub(x, y, b, d):
     def comb():
         d.next = ((not x) and y) or (x and (not y))
         b.next = (not x) and y
+
     return instances()
-    
+
+
 def exe4_full_sub(x, y, z, b, d):
     @always_comb
     def comb():
@@ -62,7 +57,9 @@ def exe4_full_sub(x, y, z, b, d):
             or (x and y and z)
         )
         b.next = ((not x) and y) or ((not x) and z) or (y and z)
+
     return instances()
+
 
 def exe4_sub3(v2, v1, v0, p2, p1, p0, q2, q1, q0):
     b3, b2, b1 = [Signal(bool(0)) for i in range(3)]
