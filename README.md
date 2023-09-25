@@ -34,12 +34,15 @@ Implemente o circuito a seguir em MyHDL
 
 ![](assets/logica1.png)
 
-Considere:
-
-```python
-- a,b,c : Entradas do tipo bool()
-- s: Saída do tipo bool()
-```
+> Módulo:
+>   - `exe1` 
+>
+> Teste:
+>   - `pytest -k exe1`
+> 
+> Entradas e Saídas:
+>   - a,b,c : Entradas do tipo bool()
+>   - s: Saída do tipo bool()
 
 ## Questão 2
 
@@ -51,20 +54,24 @@ Você é encarregado de desenvolver um sistema de detecção de nível de líqui
 
 Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base nas seguintes condições:
 
-1. Se o sensor de nível Baixo (L) estiver ativo e os outros dois sensores estiverem inativos, um `LED verde` deve acender, indicando que o tanque está no nível baixo.
-2. Se os sensores de nível Baixo (L) e Médio (M) estiverem ativos, e o sensor Alto (H) estiver inativo, um `LED amarelo` deve acender, indicando que o tanque está no nível médio.
-3. Se todos os três sensores estiverem ativos, um `LED vermelho` deve acender, indicando que o tanque está cheio.
-4. Se nenhum sensor estiver ativo, `um LED azul` deve acender, indicando que o tanque está vazio.
-5. Se sensor Alto (H) estiver ativo e pelo menos um dos outros dois sensores estiver inativo ou se o sensor Médio (M) estiver ativo e o sensor Baixo (L) inativo, um `LED laranja` deve acender, indicando que existe alguma falha nos sensores.
+1. Se o sensor de nível Baixo (L) estiver ativo e os outros dois sensores estiverem inativos, um `LED verde` (`l_vd`) deve acender, indicando que o tanque está no nível baixo.
+2. Se os sensores de nível Baixo (L) e Médio (M) estiverem ativos, e o sensor Alto (H) estiver inativo, um `LED amarelo` (`l_am`) deve acender, indicando que o tanque está no nível médio.
+3. Se todos os três sensores estiverem ativos, um `LED vermelho` (`l_vm`) deve acender, indicando que o tanque está cheio.
+4. Se nenhum sensor estiver ativo, `um LED azul` (`l_az`) deve acender, indicando que o tanque está vazio.
+5. Se sensor Alto (H) estiver ativo e pelo menos um dos outros dois sensores estiver inativo ou se o sensor Médio (M) estiver ativo e o sensor Baixo (L) inativo, um `LED laranja` (`l_lj`) deve acender, indicando que existe alguma falha nos sensores.
 
 ![](assets/nivel.png)
 
-Considere:
+> Módulo:
+>   - `exe2` 
+>
+> Teste:
+>   - `pytest -k exe2`
+> 
+> Entradas e Saídas:
+>   - l,m,h : Entradas do tipo bool()
+>   - l_vd, l_am, l_vm, l_az, l_lj: Saídas do tipo bool()
 
-```python
-- L,M,H : Entradas do tipo bool()
-- LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja: Saídas do tipo bool()
-```
 
 ## Questão 3
 
@@ -99,13 +106,11 @@ A tabela-verdade a seguir mostra o funcionamento do codificador.
 
 Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 
-> Módulos:
+> Módulo:
 >   - `exe3` 
 >
 > Teste:
->   - `pytest -k exe3_p0`
->   - `pytest -k exe3_p1`
->   - `pytest -k exe3_v`
+>   - `pytest -k exe3`
 > 
 > Entradas e Saídas:
 >   - `i3,i2,i1,i0`: Entradas `bool()`
