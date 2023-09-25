@@ -142,7 +142,7 @@ De forma similar ao `half-adder` e `full-adder`, podemos desenvolver dois compon
 
 ![](assets/sub.png)
 
-O `half-subtractor` é um circuito combinacional que subtrai dois bits (`x`, `y`), gerando dois tipos de saída: a diferença (`D`) e o borrow (`B`). O borrow é a saída que indica se foi necessário "emprestar" um bit do próximo dígito mais significativo para realizar a subtração.
+O `half-subtractor` é um circuito combinacional que subtrai dois bits (`x` - `y`), gerando dois tipos de saída: a diferença (`D`) e o borrow (`B`). O borrow é a saída que indica se foi necessário "emprestar" um bit do próximo dígito mais significativo para realizar a subtração.
 
 O `full-subtractor`, por sua vez, é uma extensão do `half-subtractor`, sendo utilizado para subtrair três bits de entrada: dois bits que são subtraídos (`x`, `y`) e um bit de borrow da subtração anterior (`z`). Assim como o `half-subtractor`, o `full-subtractor` tem duas saídas: a diferença (`D`) e o borrow (`B`).
 
@@ -162,6 +162,7 @@ Considere a tabela verdade dos dois componentes:
 - `full-subtractor`
 
 | x | y | z | B | D |
+|---|---|---|---|---|
 | 0 | 0 | 0 | 0 | 0 |
 | 0 | 0 | 1 | 1 | 1 |
 | 0 | 1 | 0 | 1 | 1 |
@@ -171,9 +172,22 @@ Considere a tabela verdade dos dois componentes:
 | 1 | 1 | 0 | 0 | 0 |
 | 1 | 1 | 1 | 1 | 1 |
 
-### Circuito 
 
-No papel desenhe um diagrama que usando os dois componentes implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
+Notem que podemos interpretar a tabela como valores em complemento de dois! Por exemplo, vamos considerar a situaćão na qual `x=0`, `y=1` e `z=0`, isso significa que temos: `0-1-0= -1`, `-1` em complemento de dois é `11`! Ou seja `B=1` e `D=1`. Outro caso seria o `x=0, y=1, z=1` nesse caso a o resultado seria: `-2 = 0 -1 -1`, e `-2` em complemento de dois é `10`, ou seja: `B=1` e `D=0`.
+
+A seguir um diagrama que usando `half-sub` e `full-sub` implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
+
+![](assets/sub3.png)
+
+<!--
+### a) Circuito 
+
+No papel desenhe um diagrama que usando `half-sub` e `full-sub` implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
+-->
+
+### a) Simulando
+
+No circuito desenhado simule a situacão de que a entrada `V = 3`, `P = -4`.  Para cada fio do circuito escreva o valor binário 
 
 ### `add3`
 
