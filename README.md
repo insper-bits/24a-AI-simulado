@@ -72,7 +72,6 @@ Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base
 >   - l,m,h : Entradas do tipo bool()
 >   - l_vd, l_am, l_vm, l_az, l_lj: Saídas do tipo bool()
 
-
 ## Questão 3
 
 | Arquivo | pnts |
@@ -175,13 +174,12 @@ No papel desenhe um diagrama que usando `half-sub` e `full-sub` implemente um su
 
 ### a) (papel) Simulando
 
-Para cada fio (`a,b,c,d,e,...`) do diagrama do subtrator `sub3` apresentado anteriormente, simule o caso para a situaćão `V=3` e `P=-4`. 
+Para cada fio (`a,b,c,d,e,...`) do diagrama do subtrator `sub3` apresentado anteriormente, simule o caso para a situaćão `V=-1` e `P=-2`. Você deve colocar o resultado no módulo `exe4_simulando`, note que não é para colocar a equação, mas sim apenas o valor dos sinais para o caso em questão! 
 
-### b) (papel) Equações
+> Módulo:
+>   - `exe4_simulando` 
 
-Encontre as equações reduzidas usando para os componentes `exe4_half_sub` e `exe4_full_sub`.
-
-### c) (myhdl) `half-sub` e `full-sub`
+### b) (myhdl) `half-sub` e `full-sub`
 
 Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir das equações encontradas anteriormente.
 
@@ -197,7 +195,7 @@ Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir da
 >   - x,y,z: in do tipo bool(0)
 >   - q,b: out do tipo bool(0)
 
-### d) (myhdl) `sub3`
+### c) (myhdl) `sub3`
 
 Implemente o componente `exe4_sub3` usando o `exe4_half_sub` e `exe4_full_sub`.
 
