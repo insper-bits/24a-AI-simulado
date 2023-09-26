@@ -7,7 +7,7 @@
 from myhdl import *
 
 
-def exe1(a, b, c, s):
+def exe1_a(a, b, c, s):
     @always_comb
     def comb():
         pass
