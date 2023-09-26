@@ -67,13 +67,13 @@ def foo(x0, x1, s, q):
     @always_comb
     def comb():
         if s == 0:
-            q = x0 and x1
+            q.next = x0 and x1
         elif s == 1:
-            q = x1 or x1
+            q.next = x1 or x1
         elif s == 2:
-            q = x0
+            q.next = x0
         else:
-            q = x1
+            q.next = x1
 
     return instances()
 ```
