@@ -32,16 +32,22 @@ Você deve realizar as implementações no arquivo:
 
 - `coponentes.py`
 
-## Questão 1
+# Questão 1
 
 | Módulo | pnts   |
 |--------|--------|
-| `exe1` | 4 (HW) |
+| `exe1_a` | 4 (HW) |
+| `exe1_b` | 4 (HW) |
+
+### a) myhdl
 
 Implemente o circuito a seguir em MyHDL
 
 ![](assets/logica1.png)
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulo:
 >   - `exe1` 
 >
@@ -52,7 +58,26 @@ Implemente o circuito a seguir em MyHDL
 >   - a,b,c : Entradas do tipo bool()
 >   - s: Saída do tipo bool()
 
-## Questão 2
+### b) Myhdl para diagrama
+
+Considere o MyHDL a seguir e gere um diagrama lógico que representa o circuito, o diagrama deve ser feito dentro do codespace no arquivo `exe1_b.drawio`. 
+
+```py
+def foo(x0, x1, s, q):
+    @always_comb
+    def comb():
+        if s == 0:
+            q = x0 and x1
+        elif s == 1:
+            q = x1 or x1
+        elif s == 2:
+            q = x0
+        else:
+            q = x1
+
+    return instances()
+```
+# Questão 2
 
 | Módulo | pnts   |
 |--------|--------|
@@ -70,6 +95,9 @@ Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base
 
 ![](assets/nivel.png)
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulo:
 >   - `exe2` 
 >
@@ -80,7 +108,7 @@ Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base
 >   - l,m,h : Entradas do tipo bool()
 >   - l_vd, l_am, l_vm, l_az, l_lj: Saídas do tipo bool()
 
-## Questão 3
+# Questão 3
 
 | Módulo | pnts |
 |---------|------|
@@ -113,6 +141,9 @@ A tabela-verdade a seguir mostra o funcionamento do codificador.
 
 Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulo:
 >   - `exe3` 
 >
@@ -123,7 +154,7 @@ Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 >   - `i3,i2,i1,i0`: Entradas `bool()`
 >   - `p1,p0,v`: Saídas `bool()`
 
-## Questão 4 
+# Questão 4 
 
 | Módulo                                        | pnts    |
 |-----------------------------------------------|---------|
@@ -173,23 +204,26 @@ A seguir um diagrama que usando `half-sub` e `full-sub` implemente um subtrator 
 
 ![](assets/sub3.png)
 
-<!--
-### a) Circuito 
-
-No papel desenhe um diagrama que usando `half-sub` e `full-sub` implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
--->
-
-### a) (papel) Simulando
+### a) Simulando
 
 Para cada fio (`a,b,c,d,e,...`) do diagrama do subtrator `sub3` apresentado anteriormente, simule o caso para a situaćão `V=-1` e `P=-2`. Você deve colocar o resultado no módulo `exe4_simulando`, note que não é para colocar a equação, mas sim apenas o valor dos sinais para o caso em questão! 
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulo:
 >   - `exe4_simulando` 
+>
+> Teste:
+>   - Não tem teste!
 
 ### b) (myhdl) `half-sub` e `full-sub`
 
 Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir das equações encontradas anteriormente.
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulos:
 >   - `exe4_half_sub` 
 >   - `exe4_full_sub`
@@ -206,6 +240,9 @@ Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir da
 
 Implemente o componente `exe4_sub3` usando o `exe4_half_sub` e `exe4_full_sub`.
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulo:
 >   - `exe4_sub3` 
 > 

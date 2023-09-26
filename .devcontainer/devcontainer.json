@@ -1,4 +1,10 @@
 {
   "image": "rafaelcorsi/bits",
-  "postCreateCommand": "pip3 install --user -r requirements-docker.txt"
+  "postCreateCommand": "pip3 install --user -r requirements-docker.txt",
+  
+  "dev.containers.defaultExtensions": [
+    "ms-python.python",
+    "hediet.vscode-drawio"
+  ]
+
 }

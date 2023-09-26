@@ -23,7 +23,7 @@ vec_exe1 = ["0000", "0010", "0100", "0110", "1001", "1011", "1100", "1111"]
 
 
 @pytest.mark.telemetry_files(source("componentes.py"))
-def test_exe1():
+def test_exe1_a():
     @instance
     def stimulus():
         for t in vec_exe1:
