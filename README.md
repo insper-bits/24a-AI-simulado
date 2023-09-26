@@ -11,8 +11,8 @@ Você possui um total de 1h20 para realizar a avaliação, você pode decidir co
 
 | Módulo     | pnts    |
 |------------|---------|
-| **Total:** | 28 (HW) |
-| exe1       | 4 (HW)  |
+| **Total:** | 32 (HW) |
+| exe1       | 8 (HW)  |
 | exe2       | 6 (HW)  |
 | exe3       | 6 (HW)  |
 | exe4       | 12 (HW) |
@@ -34,10 +34,10 @@ Você deve realizar as implementações no arquivo:
 
 # Questão 1
 
-| Módulo | pnts   |
-|--------|--------|
-| `exe1_a` | 4 (HW) |
-| `exe1_b` | 4 (HW) |
+| Módulo          | pnts   |
+|-----------------|--------|
+| `exe1_a`        | 4 (HW) |
+| `exe1_b.drawio` | 4 (HW) |
 
 ### a) myhdl
 
@@ -60,7 +60,7 @@ Implemente o circuito a seguir em MyHDL
 
 ### b) Myhdl para diagrama
 
-Considere o MyHDL a seguir e gere um diagrama lógico que representa o circuito, o diagrama deve ser feito dentro do codespace no arquivo `exe1_b.drawio`. 
+Considere o hardware `foo` em MyHDL:
 
 ```py
 def foo(x0, x1, s, q):
@@ -77,6 +77,14 @@ def foo(x0, x1, s, q):
 
     return instances()
 ```
+
+Faća uma representação em formato de diagrama (portas lógicas) do hardware que foi descrito em myhdl, o diagrama deve ser feito dentro do codespace no arquivo `exe1_b.drawio` usando a extensão `DRAW.IO`. 
+
+Você deve instalar a extensão do vscode chamada de `draw.io`:
+
+![](assets/drawio.png)
+
+
 # Questão 2
 
 | Módulo | pnts   |
@@ -159,7 +167,7 @@ Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 | Módulo                                        | pnts    |
 |-----------------------------------------------|---------|
 | **Total:**                                    | 12 (HW) |
-| (a) (papel) Simulação                         | 6 (HW)  |
+| (a) (myhl) `exe4_simulação`                   | 6 (HW)  |
 | (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` | 2 (HW)  |
 | (c) (myhdl) `exe4_sub3`                       | 4 (HW)  |
 
