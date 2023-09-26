@@ -9,6 +9,14 @@ Você possui um total de 1h20 para realizar a avaliação, você pode decidir co
 - **1h20 min**
 - **REALIZAR UM COMMIT (A CADA QUESTÃO) E DAR PUSH AO FINALIZAR**
 
+| Módulo     | pnts    |
+|------------|---------|
+| **Total:** | 28 (HW) |
+| exe1       | 4 (HW)  |
+| exe2       | 6 (HW)  |
+| exe3       | 6 (HW)  |
+| exe4       | 12 (HW) |
+
 ## Começando
 
 Você deve:
@@ -26,9 +34,9 @@ Você deve realizar as implementações no arquivo:
 
 ## Questão 1
 
-| Módulo             | pnts   |
-| ------------------ | ------ |
-| `exe1(a,b,c,s)`    | 4 (HW) |
+| Módulo | pnts   |
+|--------|--------|
+| `exe1` | 4 (HW) |
 
 Implemente o circuito a seguir em MyHDL
 
@@ -46,9 +54,9 @@ Implemente o circuito a seguir em MyHDL
 
 ## Questão 2
 
-| Módulo                                                                       | pnts   |
-|------------------------------------------------------------------------------|--------|
-| `exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)` | 6 (HW) |
+| Módulo | pnts   |
+|--------|--------|
+| `exe2`  | 6 (HW) |
 
 Você é encarregado de desenvolver um sistema de detecção de nível de líquido inflamável em um tanque de uma industria química. O tanque possui três sensores de nível: Baixo (L), Médio (M) e Alto (H). Cada sensor produz um sinal lógico ALTO quando o nível do líquido atinge sua posição.
 
@@ -74,9 +82,9 @@ Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base
 
 ## Questão 3
 
-| Arquivo | pnts |
+| Módulo | pnts |
 |---------|------|
-| myhdl   | 6    |
+| `exe3`  | 6    |
 
 Um codificador é um circuito que compacta várias entradas binárias em um número menor de saídas. A saída de um codificador de prioridade, que pode ser usado em um sistema embarcado, é a representação binária do índice da linha ativada mais significativa, começando do zero. O codificador de prioridade é usado para controlar pedidos de interrupção.
 
@@ -117,13 +125,12 @@ Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 
 ## Questão 4 
 
-| Arquivo                                       | pnts    |
+| Módulo                                        | pnts    |
 |-----------------------------------------------|---------|
-| Total:                                        | 16 (HW) |
+| **Total:**                                    | 12 (HW) |
 | (a) (papel) Simulação                         | 6 (HW)  |
-| (b) (papel) Equação                           | 2 (HW)  |
 | (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` | 2 (HW)  |
-| (c) (myhdl) `exe4_sub3`                       | 6 (HW)  |
+| (c) (myhdl) `exe4_sub3`                       | 4 (HW)  |
 
 De forma similar ao `half-adder` e `full-adder`, podemos desenvolver dois componentes chamados de `half-subtractor` e `full-subtractor` que realizam a subtração de números binários.
 
