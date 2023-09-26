@@ -104,7 +104,7 @@ A tabela-verdade a seguir mostra o funcionamento do codificador.
 | I3 | I2 | I1 | I0 | P1 | P0 | V |
 |----|----|----|----|----|----|---|
 | 0  | 0  | 0  | 0  | X  | X  | 0 |
-| 0  | 0  | 0  | 0  | 0  | 0  | 1 |
+| 0  | 0  | 0  | 1  | 0  | 0  | 1 |
 | 0  | 0  | 1  | X  | 0  | 1  | 1 |
 | 0  | 1  | X  | X  | 1  | 0  | 1 |
 | 1  | X  | X  | X  | 1  | 1  | 1 |
