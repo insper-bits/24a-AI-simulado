@@ -80,11 +80,6 @@ def foo(x0, x1, s, q):
 
 Faća uma representação em formato de diagrama (portas lógicas) do hardware que foi descrito em myhdl, o diagrama deve ser feito dentro do codespace no arquivo `exe1_b.drawio` usando a extensão `DRAW.IO`. 
 
-Você deve instalar a extensão do vscode chamada de `draw.io`:
-
-![](assets/drawio.png)
-
-
 # Questão 2
 
 | Módulo | pnts   |
