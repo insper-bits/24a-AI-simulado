@@ -1,4 +1,4 @@
-# AV2 - bits e proc
+# AI - Prática Lab - bits e proc
 
 Você possui um total de 1h20 para realizar a avaliação, você pode decidir como usar o seu tempo.
 
@@ -8,14 +8,6 @@ Você possui um total de 1h20 para realizar a avaliação, você pode decidir co
 - **Deixar proctorio aberto**
 - **1h20 min**
 - **REALIZAR UM COMMIT (A CADA QUESTÃO) E DAR PUSH AO FINALIZAR**
-
-| Módulo     | pnts    |
-|------------|---------|
-| **Total:** | 32 (HW) |
-| exe1       | 8 (HW)  |
-| exe2       | 6 (HW)  |
-| exe3       | 6 (HW)  |
-| exe4       | 12 (HW) |
 
 ## Começando
 
@@ -34,10 +26,10 @@ Você deve realizar as implementações no arquivo:
 
 # Questão 1
 
-| Módulo          | pnts   |
-|-----------------|--------|
-| `exe1_a`        | 4 (HW) |
-| `exe1_b.drawio` | 4 (HW) |
+| Módulo          | pnts |
+|-----------------|------|
+| `exe1_a`        | (HW) |
+| `exe1_b.drawio` | (HW) |
 
 ### a) myhdl
 
@@ -82,9 +74,9 @@ Faća uma representação em formato de diagrama (portas lógicas) do hardware q
 
 # Questão 2
 
-| Módulo | pnts   |
-|--------|--------|
-| `exe2`  | 6 (HW) |
+| Módulo | pnts |
+|--------|------|
+| `exe2` | (HW) |
 
 Você é encarregado de desenvolver um sistema de detecção de nível de líquido inflamável em um tanque de uma industria química. O tanque possui três sensores de nível: Baixo (L), Médio (M) e Alto (H). Cada sensor produz um sinal lógico ALTO quando o nível do líquido atinge sua posição.
 
@@ -114,8 +106,8 @@ Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base
 # Questão 3
 
 | Módulo | pnts |
-|---------|------|
-| `exe3`  | 6    |
+|--------|------|
+| `exe3` | (HW) |
 
 Um codificador é um circuito que compacta várias entradas binárias em um número menor de saídas. A saída de um codificador de prioridade, que pode ser usado em um sistema embarcado, é a representação binária do índice da linha ativada mais significativa, começando do zero. O codificador de prioridade é usado para controlar pedidos de interrupção.
 
@@ -161,10 +153,10 @@ Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 
 | Módulo                                        | pnts    |
 |-----------------------------------------------|---------|
-| **Total:**                                    | 12 (HW) |
-| (a) (myhl) `exe4_simulação`                   | 6 (HW)  |
-| (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` | 2 (HW)  |
-| (c) (myhdl) `exe4_sub3`                       | 4 (HW)  |
+| **Total:**                                    |  (HW) |
+| (a) (myhl) `exe4_simulação`                   |  (HW)  |
+| (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` |  (HW)  |
+| (c) (myhdl) `exe4_sub3`                       |  (HW)  |
 
 De forma similar ao `half-adder` e `full-adder`, podemos desenvolver dois componentes chamados de `half-subtractor` e `full-subtractor` que realizam a subtração de números binários.
 
