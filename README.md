@@ -1,4 +1,4 @@
-# AV2 - bits e proc
+# AI - Prática Lab - bits e proc
 
 Você possui um total de 1h20 para realizar a avaliação, você pode decidir como usar o seu tempo.
 
@@ -24,53 +24,90 @@ Você deve realizar as implementações no arquivo:
 
 - `coponentes.py`
 
-## Questão 1
+# Questão 1
 
-| Módulo             | pnts   |
-| ------------------ | ------ |
-| `exe1(a,b,c,s)`    | 4 (HW) |
+| Módulo          | pnts |
+|-----------------|------|
+| `exe1_a`        | (HW) |
+| `exe1_b.drawio` | (HW) |
+
+### a) myhdl
 
 Implemente o circuito a seguir em MyHDL
 
 ![](assets/logica1.png)
 
-Considere:
+> Arquivo:
+>   - `componentes.py`
+>
+> Módulo:
+>   - `exe1` 
+>
+> Teste:
+>   - `pytest -k exe1`
+> 
+> Entradas e Saídas:
+>   - a,b,c : Entradas do tipo bool()
+>   - s: Saída do tipo bool()
 
-```python
-- a,b,c : Entradas do tipo bool()
-- s: Saída do tipo bool()
+### b) Myhdl para diagrama
+
+Considere o hardware `foo` em MyHDL:
+
+```py
+def foo(x0, x1, s, q):
+    @always_comb
+    def comb():
+        if s == 0:
+            q.next = x0 and x1
+        elif s == 1:
+            q.next = x1 or x1
+        elif s == 2:
+            q.next = x0
+        else:
+            q.next = x1
+
+    return instances()
 ```
 
-## Questão 2
+Faća uma representação em formato de diagrama (portas lógicas) do hardware que foi descrito em myhdl, o diagrama deve ser feito dentro do codespace no arquivo `exe1_b.drawio` usando a extensão `DRAW.IO`. 
 
-| Módulo                                                                       | pnts   |
-|------------------------------------------------------------------------------|--------|
-| `exe2(L, M, H, LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja)` | 6 (HW) |
+# Questão 2
+
+| Módulo | pnts |
+|--------|------|
+| `exe2` | (HW) |
 
 Você é encarregado de desenvolver um sistema de detecção de nível de líquido inflamável em um tanque de uma industria química. O tanque possui três sensores de nível: Baixo (L), Médio (M) e Alto (H). Cada sensor produz um sinal lógico ALTO quando o nível do líquido atinge sua posição.
 
 Você deve desenvolver um circuito em MyHDL que acenda LEDs indicativos com base nas seguintes condições:
 
-1. Se o sensor de nível Baixo (L) estiver ativo e os outros dois sensores estiverem inativos, um `LED verde` deve acender, indicando que o tanque está no nível baixo.
-2. Se os sensores de nível Baixo (L) e Médio (M) estiverem ativos, e o sensor Alto (H) estiver inativo, um `LED amarelo` deve acender, indicando que o tanque está no nível médio.
-3. Se todos os três sensores estiverem ativos, um `LED vermelho` deve acender, indicando que o tanque está cheio.
-4. Se nenhum sensor estiver ativo, `um LED azul` deve acender, indicando que o tanque está vazio.
-5. Se sensor Alto (H) estiver ativo e pelo menos um dos outros dois sensores estiver inativo ou se o sensor Médio (M) estiver ativo e o sensor Baixo (L) inativo, um `LED laranja` deve acender, indicando que existe alguma falha nos sensores.
+1. Se o sensor de nível Baixo (L) estiver ativo e os outros dois sensores estiverem inativos, um `LED verde` (`l_vd`) deve acender, indicando que o tanque está no nível baixo.
+2. Se os sensores de nível Baixo (L) e Médio (M) estiverem ativos, e o sensor Alto (H) estiver inativo, um `LED amarelo` (`l_am`) deve acender, indicando que o tanque está no nível médio.
+3. Se todos os três sensores estiverem ativos, um `LED vermelho` (`l_vm`) deve acender, indicando que o tanque está cheio.
+4. Se nenhum sensor estiver ativo, `um LED azul` (`l_az`) deve acender, indicando que o tanque está vazio.
+5. Se sensor Alto (H) estiver ativo e pelo menos um dos outros dois sensores estiver inativo ou se o sensor Médio (M) estiver ativo e o sensor Baixo (L) inativo, um `LED laranja` (`l_lj`) deve acender, indicando que existe alguma falha nos sensores.
 
 ![](assets/nivel.png)
 
-Considere:
+> Arquivo:
+>   - `componentes.py`
+>
+> Módulo:
+>   - `exe2` 
+>
+> Teste:
+>   - `pytest -k exe2`
+> 
+> Entradas e Saídas:
+>   - l,m,h : Entradas do tipo bool()
+>   - l_vd, l_am, l_vm, l_az, l_lj: Saídas do tipo bool()
 
-```python
-- L,M,H : Entradas do tipo bool()
-- LED_verde, LED_amarelo, LED_vermelho, LED_azul, LED_laranja: Saídas do tipo bool()
-```
+# Questão 3
 
-## Questão 3
-
-| Arquivo | pnts |
-|---------|------|
-| myhdl   | 6    |
+| Módulo | pnts |
+|--------|------|
+| `exe3` | (HW) |
 
 Um codificador é um circuito que compacta várias entradas binárias em um número menor de saídas. A saída de um codificador de prioridade, que pode ser usado em um sistema embarcado, é a representação binária do índice da linha ativada mais significativa, começando do zero. O codificador de prioridade é usado para controlar pedidos de interrupção.
 
@@ -90,7 +127,7 @@ A tabela-verdade a seguir mostra o funcionamento do codificador.
 | I3 | I2 | I1 | I0 | P1 | P0 | V |
 |----|----|----|----|----|----|---|
 | 0  | 0  | 0  | 0  | X  | X  | 0 |
-| 0  | 0  | 0  | 0  | 0  | 0  | 1 |
+| 0  | 0  | 0  | 1  | 0  | 0  | 1 |
 | 0  | 0  | 1  | X  | 0  | 1  | 1 |
 | 0  | 1  | X  | X  | 1  | 0  | 1 |
 | 1  | X  | X  | X  | 1  | 1  | 1 |
@@ -99,27 +136,27 @@ A tabela-verdade a seguir mostra o funcionamento do codificador.
 
 Implemente as equações que definem as saídas `P0`, `P1` e `V`.
 
-> Módulos:
+> Arquivo:
+>   - `componentes.py`
+>
+> Módulo:
 >   - `exe3` 
 >
 > Teste:
->   - `pytest -k exe3_p0`
->   - `pytest -k exe3_p1`
->   - `pytest -k exe3_v`
+>   - `pytest -k exe3`
 > 
 > Entradas e Saídas:
 >   - `i3,i2,i1,i0`: Entradas `bool()`
 >   - `p1,p0,v`: Saídas `bool()`
 
-## Questão 4 
+# Questão 4 
 
-| Arquivo                                       | pnts    |
+| Módulo                                        | pnts    |
 |-----------------------------------------------|---------|
-| Total:                                        | 16 (HW) |
-| (a) (papel) Simulação                         | 6 (HW)  |
-| (b) (papel) Equação                           | 2 (HW)  |
-| (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` | 2 (HW)  |
-| (c) (myhdl) `exe4_sub3`                       | 6 (HW)  |
+| **Total:**                                    |  (HW) |
+| (a) (myhl) `exe4_simulação`                   |  (HW)  |
+| (b) (myhdl) `exe4_half_sub` e `exe4_full_sub` |  (HW)  |
+| (c) (myhdl) `exe4_sub3`                       |  (HW)  |
 
 De forma similar ao `half-adder` e `full-adder`, podemos desenvolver dois componentes chamados de `half-subtractor` e `full-subtractor` que realizam a subtração de números binários.
 
@@ -162,24 +199,26 @@ A seguir um diagrama que usando `half-sub` e `full-sub` implemente um subtrator 
 
 ![](assets/sub3.png)
 
-<!--
-### a) Circuito 
+### a) Simulando
 
-No papel desenhe um diagrama que usando `half-sub` e `full-sub` implemente um subtrator que recebe como entrada dois vetores: `V` e `P` de trés bits cada (`[V2 V1 V0]`, `[P2 P1 P0]`) e gere um terceiro vetor também de três bits `Q` (`[Q2 Q1 Q0]`) que é resultado de: `Q = V - P`.
--->
+Para cada fio (`a,b,c,d,e,...`) do diagrama do subtrator `sub3` apresentado anteriormente, simule o caso para a situaćão `V=-1` e `P=-2`. Você deve colocar o resultado no módulo `exe4_simulando`, note que não é para colocar a equação, mas sim apenas o valor dos sinais para o caso em questão! 
 
-### a) (papel) Simulando
+> Arquivo:
+>   - `componentes.py`
+>
+> Módulo:
+>   - `exe4_simulando` 
+>
+> Teste:
+>   - Não tem teste!
 
-Para cada fio (`a,b,c,d,e,...`) do diagrama do subtrator `sub3` apresentado anteriormente, simule o caso para a situaćão `V=3` e `P=-4`. 
-
-### b) (papel) Equações
-
-Encontre as equações reduzidas usando para os componentes `exe4_half_sub` e `exe4_full_sub`.
-
-### c) (myhdl) `half-sub` e `full-sub`
+### b) (myhdl) `half-sub` e `full-sub`
 
 Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir das equações encontradas anteriormente.
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulos:
 >   - `exe4_half_sub` 
 >   - `exe4_full_sub`
@@ -192,10 +231,13 @@ Em MyHDL implemente os componentes `exe4_half_sub` e `exe4_full_sub` a partir da
 >   - x,y,z: in do tipo bool(0)
 >   - q,b: out do tipo bool(0)
 
-### d) (myhdl) `sub3`
+### c) (myhdl) `sub3`
 
 Implemente o componente `exe4_sub3` usando o `exe4_half_sub` e `exe4_full_sub`.
 
+> Arquivo:
+>   - `componentes.py`
+>
 > Módulo:
 >   - `exe4_sub3` 
 > 
